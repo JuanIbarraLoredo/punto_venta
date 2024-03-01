@@ -8,7 +8,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
-import 'package:punto_venta/Compras.dart';
+import 'package:punto_venta/Vista/Compras.dart';
+import 'package:punto_venta/Inicio_Sesion.dart';
+import 'package:punto_venta/Vista/Menu.dart';
 
 void main() {
   testWidgets('Counter increments smoke test', (WidgetTester tester) async {

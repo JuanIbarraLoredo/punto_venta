@@ -1,8 +1,13 @@
 import 'package:eva_icons_flutter/eva_icons_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:punto_venta/Vista/Menu.dart';
 
-class Alta_Productos extends StatelessWidget {
+void main(List<String> args) {
+  runApp(Ejemplo());
+}
+
+class Ejemplo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -10,7 +15,7 @@ class Alta_Productos extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const MyHomePage(
+      home: MyHomePage(
         title: '',
       ),
       title: 'Punto de venta',
@@ -18,26 +23,27 @@ class Alta_Productos extends StatelessWidget {
   }
 }
 
-class MyHomePage extends StatefulWidget {
+class MyHomePage extends StatelessWidget {
+  List<Categoria> _categorias = [
+    Categoria(nombre: "Refrescos", codigo: "087956"),
+    Categoria(nombre: "Sabritas", codigo: "34341234"),
+    Categoria(nombre: "Jugos", codigo: "21312312"),
+    Categoria(nombre: "Helados", codigo: "5653543"),
+    Categoria(nombre: "Galletas", codigo: "232321"),
+  ];
   final String title;
-  const MyHomePage({
-    super.key,
+  MyHomePage({
+    Key? key,
     required this.title,
-  });
+  }) : super(key: key);
 
-  @override
-  State<MyHomePage> createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-        title: Text(widget.title),
+        title: Text(title),
         toolbarHeight: 0,
-        // centerTitle: true,
         backgroundColor: Colors.transparent,
         systemOverlayStyle: const SystemUiOverlayStyle(
           statusBarColor: Colors.transparent,
@@ -58,10 +64,16 @@ class _MyHomePageState extends State<MyHomePage> {
             Row(
               children: [
                 ElevatedButton.icon(
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => Menu()),
+                    );
+                  },
                   label: const Text(''),
                   icon: const Icon(
                     EvaIcons.arrowIosBackOutline,
+                    color: Color.fromARGB(255, 0, 0, 0),
                   ),
                   style: ElevatedButton.styleFrom(
                     shape: const RoundedRectangleBorder(),
@@ -69,17 +81,20 @@ class _MyHomePageState extends State<MyHomePage> {
                       horizontal: 10,
                       vertical: 20,
                     ),
-                    backgroundColor: Color.fromARGB(255, 201, 200, 200),
+                    backgroundColor: Color.fromARGB(255, 255, 255, 255),
                   ),
-                ),
-                Image.asset(
-                  'assets/productos.png',
-                  width: 350,
-                  height: 200,
                 ),
               ],
             ),
             Container(
+              padding: const EdgeInsets.symmetric(horizontal: 80, vertical: 0),
+              child: Image.asset(
+                'assets/spiderman2.png',
+                width: 350,
+                height: 200,
+              ),
+            ),
+            Container(
               padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 5),
               child: TextField(
                 decoration: InputDecoration(
@@ -89,8 +104,8 @@ class _MyHomePageState extends State<MyHomePage> {
                       right: 15,
                     ),
                     child: const Icon(
-                      EvaIcons.barChart,
-                      color: Color.fromARGB(255, 227, 2, 129),
+                      EvaIcons.gridOutline,
+                      color: Color.fromARGB(255, 255, 0, 0),
                     ),
                   ),
                   contentPadding: const EdgeInsets.symmetric(
@@ -102,7 +117,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     ),
                     // borderSide: BorderSide.none,
                   ),
-                  labelText: 'Codigo o id del producto',
+                  labelText: 'Nombre de la categoria ',
                 ),
               ),
             ),
@@ -116,8 +131,8 @@ class _MyHomePageState extends State<MyHomePage> {
                       right: 15,
                     ),
                     child: const Icon(
-                      EvaIcons.pricetagsOutline,
-                      color: Color.fromARGB(255, 227, 2, 129),
+                      EvaIcons.code,
+                      color: Color.fromARGB(255, 255, 0, 0),
                     ),
                   ),
                   contentPadding: const EdgeInsets.symmetric(
@@ -129,78 +144,22 @@ class _MyHomePageState extends State<MyHomePage> {
                     ),
                     // borderSide: BorderSide.none,
                   ),
-                  labelText: 'Precio del producto',
+                  labelText: 'Codigo de la categoria',
                 ),
               ),
-            ),
-            Container(
-              padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 5),
-              child: TextField(
-                decoration: InputDecoration(
-                  prefixIcon: Container(
-                    padding: const EdgeInsets.only(
-                      left: 20,
-                      right: 15,
-                    ),
-                    child: const Icon(
-                      EvaIcons.hash,
-                      color: Color.fromARGB(255, 227, 2, 129),
-                    ),
-                  ),
-                  contentPadding: const EdgeInsets.symmetric(
-                    horizontal: 0,
-                  ),
-                  border: const OutlineInputBorder(
-                    borderRadius: BorderRadius.all(
-                      Radius.circular(35),
-                    ),
-                    // borderSide: BorderSide.none,
-                  ),
-                  labelText: 'Cantidad de productos',
-                ),
-              ),
-            ),
-            Container(
-              padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 5),
-              child: TextField(
-                decoration: InputDecoration(
-                  prefixIcon: Container(
-                    padding: const EdgeInsets.only(
-                      left: 20,
-                      right: 15,
-                    ),
-                    child: const Icon(
-                      EvaIcons.grid,
-                      color: Color.fromARGB(255, 227, 2, 129),
-                    ),
-                  ),
-                  contentPadding: const EdgeInsets.symmetric(
-                    horizontal: 0,
-                  ),
-                  border: const OutlineInputBorder(
-                    borderRadius: BorderRadius.all(
-                      Radius.circular(35),
-                    ),
-                    // borderSide: BorderSide.none,
-                  ),
-                  labelText: 'Categoria',
-                ),
-              ),
-            ),
-            const SizedBox(
-              height: 20,
             ),
             Container(
               padding: const EdgeInsets.symmetric(horizontal: 70, vertical: 10),
               child: ElevatedButton.icon(
                 onPressed: () {},
-                label: const Text('Agregar Producto'),
-                icon: const Icon(
-                  Icons.addchart_outlined,
+                label: const Text(
+                  'Agregar Categoria',
+                  style: TextStyle(color: Color.fromARGB(255, 0, 0, 0)),
                 ),
+                icon:
+                    const Icon(Icons.add, color: Color.fromARGB(255, 0, 0, 0)),
                 style: ElevatedButton.styleFrom(
-                  textStyle:
-                      TextStyle(color: Color.fromARGB(255, 255, 255, 255)),
+                  textStyle: TextStyle(),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.zero,
                   ),
@@ -208,13 +167,27 @@ class _MyHomePageState extends State<MyHomePage> {
                     horizontal: 80,
                     vertical: 12,
                   ),
-                  backgroundColor: Color.fromARGB(255, 255, 121, 197),
+                  backgroundColor: Color.fromARGB(255, 255, 77, 77),
                 ),
               ),
+            ),
+            ListView.builder(
+              shrinkWrap: true,
+              itemCount: _categorias.length,
+              itemBuilder: (context, index) {
+                return Text(_categorias[index].nombre);
+              },
             ),
           ],
         ),
       ),
     );
   }
+}
+
+class Categoria {
+  String nombre;
+  String codigo;
+
+  Categoria({required this.nombre, required this.codigo});
 }

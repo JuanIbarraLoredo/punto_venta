@@ -2,65 +2,21 @@ import 'package:eva_icons_flutter/eva_icons_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-void main() {
-  runApp(const MyApp());
-}
-
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: const MyHomePage(
-        title: '',
-      ),
-      title: 'Punto de venta',
-    );
-  }
-}
-
-class MyHomePage extends StatefulWidget {
-  final String title;
-  const MyHomePage({
-    super.key,
-    required this.title,
-  });
-
-  @override
-  State<MyHomePage> createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
+class Compras extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
       appBar: AppBar(
-        title: Text(widget.title),
-        toolbarHeight: 0,
-        // centerTitle: true,
-        backgroundColor: Colors.transparent,
-        systemOverlayStyle: const SystemUiOverlayStyle(
-          statusBarColor: Colors.transparent,
-          statusBarIconBrightness: Brightness.dark,
-        ),
-        elevation: 0,
+        title: const Text('Compras'),
       ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.symmetric(
-          horizontal: 25,
+          horizontal: 20,
+          vertical: 0,
         ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const SizedBox(
-              height: 15,
-            ),
             Row(
               children: [
                 Image.asset(
@@ -68,17 +24,16 @@ class _MyHomePageState extends State<MyHomePage> {
                   width: 200,
                   height: 100,
                 ),
-                const SizedBox(
-                  height: 30,
-                ),
-                const SizedBox(
-                  width: 100,
-                ),
                 ElevatedButton.icon(
                   onPressed: () {},
-                  label: const Text('Carrito'),
+                  label: const Text(
+                    'Carrito',
+                    style: TextStyle(
+                        fontSize: 18, color: Color.fromARGB(255, 0, 0, 0)),
+                  ),
                   icon: const Icon(
                     EvaIcons.carOutline,
+                    color: Color.fromARGB(255, 0, 0, 0),
                   ),
                   style: ElevatedButton.styleFrom(
                     shape: const RoundedRectangleBorder(),
@@ -123,33 +78,22 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
             Row(
               children: [
+                SizedBox(
+                  width: 60,
+                ),
                 ElevatedButton.icon(
                   onPressed: () {},
-                  label: const Text('Agregar'),
+                  label: const Text(
+                    'Agregar',
+                    style: TextStyle(
+                        fontSize: 18, color: Color.fromARGB(255, 0, 0, 0)),
+                  ),
                   icon: const Icon(
                     Icons.add,
+                    color: Color.fromARGB(255, 0, 0, 0),
                   ),
                   style: ElevatedButton.styleFrom(
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(35),
-                    ),
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: 80,
-                      vertical: 12,
-                    ),
-                    backgroundColor: const Color.fromARGB(255, 255, 81, 81),
-                  ),
-                ),
-                const SizedBox(
-                  width: 20,
-                ),
-                ElevatedButton.icon(
-                  onPressed: () {},
-                  label: const Text('Scanear'),
-                  icon: const Icon(
-                    Icons.camera_alt_outlined,
-                  ),
-                  style: ElevatedButton.styleFrom(
+                    minimumSize: Size(50, 50),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(35),
                     ),
@@ -162,10 +106,8 @@ class _MyHomePageState extends State<MyHomePage> {
                 ),
               ],
             ),
-            Image.asset(
-              'assets/tabla.png',
-              width: 600,
-              height: 350,
+            const SizedBox(
+              height: 20,
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -205,16 +147,21 @@ class _MyHomePageState extends State<MyHomePage> {
                 ),
                 ElevatedButton.icon(
                   onPressed: () {},
-                  label: const Text('Pagar'),
+                  label: const Text(
+                    'Pagar',
+                    style: TextStyle(
+                        fontSize: 18, color: Color.fromARGB(255, 0, 0, 0)),
+                  ),
                   icon: const Icon(
                     Icons.wallet,
+                    color: Color.fromARGB(255, 0, 0, 0),
                   ),
                   style: ElevatedButton.styleFrom(
+                    fixedSize: Size(200, 50),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(35),
                     ),
                     padding: const EdgeInsets.symmetric(
-                      horizontal: 80,
                       vertical: 12,
                     ),
                     backgroundColor: const Color.fromARGB(255, 255, 81, 81),
